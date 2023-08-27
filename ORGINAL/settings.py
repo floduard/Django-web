@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6%0++3j74r%^9l$oeg_5nxom4*_=5)7t9a3xqc(r029pu--_)@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'drf_yasg',
-   
+    'allauth',
+    'allauth.account',
+
 
     # Add your API app here
 ]
