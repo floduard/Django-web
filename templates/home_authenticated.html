@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+<style xmlns:border-collapse="http://www.w3.org/1999/xhtml" xmlns="">
+        .container {
+            display: flex;
+            align-items: center;    /* Center items vertically */
+            justify-content: center; /* Center items horizontally */
+            height: 100vh;          /* Set the container height to full viewport height */
+            background-color: lightgray;
+        }
+
+        .identical-div {
+            width: 150px;
+            height: 150px;
+            background-color: white;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 150px; /* Center content vertically */
+        }
+
+        table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+          }
+    </style>
+{% block content %}
+<center>
+     <strong>Dear CLIENT</strong>
+</center>
+<div>
+    <div class="fort" style="float: left;margin-left:5% ">
+     <h3>Search Available Flights</h3>
+    <form method="post" action="{% url 'search_flights' %}">
+        {% csrf_token %}
+        {{ flight_search_form.as_p }}
+        <button type="submit">Flights</button>
+    </form>
+
+    <h3>Search Available Hotels</h3>
+    <a href="{% url 'search_hotel' %}" class="modal-trigger"><button> Hotels</button></a>
+
+<h3>Search Available Rental Cars</h3>
+    <a href="{% url 'search_rental_car' %}" class="modal-trigger"><button> Rental Cars</button></a>
+    </div>
+ <div class="fort" style="float: right;margin-right: 10%">
+ <div class="container" style="text-align: center">
+   <div class="identical-div" >
+        <h3>Book a Flight</h3>
+    <form method="post" action="{% url 'book_flight' %}">
+        {% csrf_token %}
+        {{ flight_form.as_p }}
+        <label for="hotel_choice">Select a Hotel:</label>
+        {{ hotel_form.hotel_choice }}
+        <label for="rental_car_choice">Select a Rental Car:</label>
+        {{ rental_car_form.rental_car_choice }}
+        <br>
+        <button type="submit" style="color: blue">Book Flight</button>
+    </form>
+   </div>
+ </div>
+</div>
+<div>
+  <div style="text-align: center;">
+    <button id="home-button"  style="margin-bottom: 15%"><h2>View Booked Flights</h2></button>
+      <div><img src="background.jpeg" width="474" height="340" alt="pic"></div>
+</div>
+    <!-- Hidden div for details -->
+    <div id="details" style="display: none;">
+          <h3> BOOKED HOTELS</h3>
+
+        <table style="width:40%" ; border=" 2px solid black" ; border-collapse="collapse">
+            <tr style="border:2px solid black" ; border-collapse="collapse">
+                <th style="border:2px solid black" ; border-collapse="collapse">PASSENGER NAME</th>
+                <th style="border:2px solid black" ; border-collapse="collapse">PLACE OF ORIGIN</th>
+                <th style="border:2px solid black" ; border-collapse="collapse">DESTINATION</th>
+                <th style="border:2px solid black" ; border-collapse="collapse">HOTEL NAME</th>
+                <th style="border:2px solid black" ; border-collapse="collapse">PRICE</th>
+                <th style="border:2px solid black" ; border-collapse="collapse">FLIGHT DATE</th>
+            </tr>
+            {% if flights %}
+                {% for flight in flights %}
+                    <tr style="border:2px solid black" ; border-collapse="collapse">
+                        <td style="border:2px solid black" ; border-collapse="collapse"> {{ flight.traveler_name }} </td>
+                        <td style="border:2px solid black" ; border-collapse="collapse"> {{ flight.departure_city }} </td>
+                        <td style="border:2px solid black" ; border-collapse="collapse">{{ flight.arrival_city }}</td>
+                        <td style="border:2px solid black" ; border-collapse="collapse">{{ flight.book_hotel }}</td>
+                        <td style="border:2px solid black" ; border-collapse="collapse"> {{ flight.price }} </td>
+                        <td style="border:2px solid black" ; border-collapse="collapse"> {{ flight.departure_time }} </td>
+                    </tr>
+
+                {% endfor %}
+                </table>
+                </div>
+
+                </div>
+    {% else %}
+                <center>
+        <p>No booked flights available.</p>
+                </center>
+    {% endif %}
+{% block scripts %}
+    <center>
+<script>
+
+    const homeButton = document.getElementById('home-button');
+    const detailsDiv = document.getElementById('details');
+
+    homeButton.addEventListener('click', () => {
+        if (detailsDiv.style.display === 'none') {
+            detailsDiv.style.display = 'block';
+            homeButton.innerText = 'Hide Details';
+        } else {
+            detailsDiv.style.display = 'none';
+            homeButton.innerText = 'View Details';
+        }
+    });
+
+</script>
+    </center>
+{% endblock %}
+</div>
+{% endblock %}

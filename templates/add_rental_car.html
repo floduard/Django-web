@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Rental Car{% endblock %}
+
+{% block content %}
+    <h2>Add Rental Car</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Rental Car</button>
+    </form>
+{% endblock %}

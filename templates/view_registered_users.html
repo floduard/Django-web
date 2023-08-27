@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <center>
+<h2>Registered Users</h2>
+
+    {% for user in users %}
+        <strong> {{ user.username }}</strong><br>
+    {% endfor %}
+
+    </center>
+{% endblock %}

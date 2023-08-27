@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} manager{% endblock %}
+
+{% block content %}
+
+<center>
+    <h2>manager     {{ user.username }}</h2>
+
+       <h3>View Registered Users</h3>
+    <a href="{% url 'view_registered_users' %}" class="btn btn-primary"><button>Registered Users</button></a>
+
+<!--    <h3>Update Your Credentials</h3>-->
+    <!-- Display user credentials form for updating -->
+
+    <h3>Add Hotels</h3>
+    <a href="{% url 'add_hotel' %}" class="modal-trigger"><button>Add Hotel</button></a>
+
+    <h3>Add Rented Cars</h3>
+    <a href="{% url 'add_rental_car' %}" class="modal-trigger"><button>Add Rental Car</button></a>
+    <h3>View Booked Hotels</h3>
+    <a href="/" class="btn btn-primary"><button>View Booked Hotels</button></a>
+    <h3>View Rented Cars</h3>
+    <a href="/" class="btn btn-primary"><button>View Rented Cars</button></a>
+</center>
+
+
+
+{% endblock %}

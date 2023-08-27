@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Flight{% endblock %}
+
+{% block content %}
+    <h2>Confirm your Flight</h2>
+    <form method="post" action="{% url 'book_flight' %}" style="text-align: center">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Book</button>
+    </form>
+
+{% endblock %}
+
+

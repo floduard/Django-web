@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <header>
+    <h1><a href="{% url 'home' %}"><button style="margin-left: 15%"><h5>|   BACK       |</h5></button></a>
+    </h1>
+   </header>
+<h2>Search Hotels</h2>
+
+<form method="GET" action="{% url 'search_hotel' %}">
+    <label>
+        <input type="text" name="hotel_name" placeholder="Enter Hotel Name">
+    </label>
+    <button type="submit">Search</button>
+</form>
+
+<!-- Display search results here -->
+{% if hotels %}
+    <h3>Search Results</h3>
+    <ul>
+        {% for hotel in hotels %}
+            <li>{{ hotel.model}} - {{ hotel.location }}- {{ hotel.image }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Flights{% endblock %}
+
+{% block content %}
+    <h2>Search Flights</h2>
+    <form method="get" action="{% url 'search_flights' %}">
+        <label for="departure_city">Departure City:</label>
+        <input type="text" name="departure_city" id="departure_city">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if flights %}
+        <h3>Search Results</h3>
+        <ul>
+            {% for flight in flights %}
+                <li>
+                    {{ flight.departure_city }} to {{ flight.arrival_city }} - Departure: {{ flight.departure_time }}
+                    <a href="{% url 'book_flight' flight.id %}">Book</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+       <header>
+    <h1><a href="{% url 'home' %}"><button style="margin-left: 15%"><h5>|   BACK       |</h5></button></a>
+    </h1>
+   </header>
+<h2>Rental Car Search</h2>
+<form method="get">
+    {{ search_form.as_p }}
+    <button type="submit">Search</button>
+</form>
+
+<h3>Search Results:</h3>
+{% if rental_cars %}
+    <ul>
+        {% for car in rental_cars %}
+            <li>{{ car.model }}  - {{ car.price }}- {{ car.image }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No rental cars found.</p>
+{% endif %}
+{% endblock %}

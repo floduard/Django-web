@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Available Hotels{% endblock %}
+
+{% block content %}
+    <h2>Available Hotels</h2>
+    {% if available_hotels %}
+        <ul>
+            {% for hotel in available_hotels %}
+                <li>{{ hotel.name }} - {{ hotel.city }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No available hotels found.</p>
+    {% endif %}
+{% endblock %}

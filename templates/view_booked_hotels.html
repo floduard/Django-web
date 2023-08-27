@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>View Booked Hotels</h2>
+{% if booked_hotels %}
+    <ul>
+        {% for hotel in booked_hotels %}
+            <li>{{ hotel.name }} - {{ hotel.location }} - {{ hotel.price }} - {{ hotel.image }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No booked hotels found.</p>
+{% endif %}
+{% endblock %}

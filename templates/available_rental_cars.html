@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Available Rental Cars{% endblock %}
+
+{% block content %}
+    <h2>Available Rental Cars</h2>
+    {% if available_cars %}
+        <ul>
+            {% for car in available_cars %}
+                <li>{{ car.image }} - {{ car.model }} - {{ car.price }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No available rental cars found.</p>
+    {% endif %}
+{% endblock %}

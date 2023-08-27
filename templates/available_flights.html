@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Available Flights{% endblock %}
+
+{% block content %}
+    <h2>Available Flights</h2>
+    {% if available_flights %}
+        <ul>
+            {% for flight in available_flights %}
+                <li>{{ flight.departure_city }} to {{ flight.arrival_city }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No available flights found.</p>
+    {% endif %}
+{% endblock %}
